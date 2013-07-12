@@ -1,6 +1,6 @@
 # DurableDecoratorRails
 
-TODO: Write a gem description
+This integrates [durable_decorator](https://github.com/jumph4x/durable_decorator) with Rails.
 
 ## Installation
 
@@ -22,7 +22,7 @@ See [DurableDecorator#Usage](https://github.com/jumph4x/durable_decorator#usage)
 
 This gem is useful for determining SHAs of existing method definitions, for the express purpose of sealing your decorators. For that, simply run this in console:
 
-```rake
+```shell
 rake durable_decorator:determine_sha[SomeClazz#some_method]
 7c62cf476a2458d5eb401588d6f10db8bbecc8a6
 ```
