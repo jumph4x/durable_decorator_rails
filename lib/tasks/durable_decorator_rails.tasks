@@ -1,0 +1,8 @@
+require 'durable_decorator'
+
+namespace :durable_decorator do
+  desc "Pull up the current SHA of a method"
+  task :determine_sha, [:target] => :environment do |t, args|
+    puts DurableDecorator::Base.determine_sha(args[:target]) 
+  end
+end
