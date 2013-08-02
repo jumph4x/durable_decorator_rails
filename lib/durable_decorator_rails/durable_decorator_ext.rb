@@ -1,3 +1,5 @@
+require 'durable_decorator/util'
+
 module DurableDecorator
   Util.class_eval do
     def logger
