@@ -17,14 +17,30 @@ Or install it yourself as:
     $ gem install durable_decorator_rails
 
 ## Usage
-
-See [DurableDecorator#Usage](https://github.com/jumph4x/durable_decorator#usage)
-
-This gem is useful for determining SHAs of existing method definitions, for the express purpose of sealing your decorators. For that, simply run this in console:
-
+This gem will generate the correct file structure, place (or append to) the correct decorator and even insert the correct seal for you. Use:
 ```shell
-rake durable_decorator:determine_sha[SomeClazz#some_method]
-7c62cf476a2458d5eb401588d6f10db8bbecc8a6
+rails g durable_decorator:decorator [SUBDIR] [FULL_METHOD_NAME]
+```
+
+For example, let us decorate the an existing ```#deleted?``` instance method from the gem that is namespaced under ```Spree``` in a file that is a *model* called ```Product```. Just run:
+```shell
+rails g durable_decorator:decorator models Spree::Product#deleted?
+```
+
+The gem will create the ```app/models/spree/product_decorator.rb``` file for you to start with, and it will have the following contents:
+```ruby
+Spree::Product.class_eval do  
+
+  durably_decorate :deleted?, mode: 'strict', sha: '9dc99742ed3ebbdd5b2cbd7c3c93d730e5244e72' do 
+  end  
+
+end
+
+```
+
+Otherwise, you may access the SHA of any method in memory with:
+```shell
+rake durable_decorator:determine_sha[Spree::Product#deleted?]
 ```
 
 ## Contributing
