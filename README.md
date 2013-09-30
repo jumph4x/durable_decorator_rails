@@ -19,12 +19,12 @@ Or install it yourself as:
 ## Usage
 This gem will generate the correct file structure, place (or append to) the correct decorator and even insert the correct seal for you. Use:
 ```shell
-rails g durable_decorator:decorator [SUBDIR] [FULL_METHOD_NAME]
+rails g decorator [FULL_METHOD_NAME]
 ```
 
 For example, let us decorate the an existing ```#deleted?``` instance method from the gem that is namespaced under ```Spree``` in a file that is a *model* called ```Product```. Just run:
 ```shell
-rails g durable_decorator:decorator models Spree::Product#deleted?
+rails g decorator Spree::Product#deleted?
 ```
 
 The gem will create the ```app/models/spree/product_decorator.rb``` file for you to start with, and it will have the following contents:
