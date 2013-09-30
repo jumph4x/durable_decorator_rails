@@ -22,7 +22,7 @@ This gem will generate the correct file structure, place (or append to) the corr
 rails g decorator [FULL_METHOD_NAME]
 ```
 
-For example, let us decorate the an existing ```#deleted?``` instance method from the gem that is namespaced under ```Spree``` in a file that is a *model* called ```Product```. Just run:
+For example, let us decorate the existing ```#deleted?``` instance method from the gem that is namespaced under ```Spree``` in a file that is a *model* called ```Product```. Just run:
 ```shell
 rails g decorator Spree::Product#deleted?
 ```
