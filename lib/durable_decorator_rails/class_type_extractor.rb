@@ -28,12 +28,25 @@ module DurableDecoratorRails
         DurableDecorator::Base.extract_method(name).source_location[0]
       end
 
+      def path_parts name
+        method_source(name).split('/')
+      end
+      
+      def filename name
+        path_parts(name)[-1]
+      end
+
       def class_name method_name
         method_name.match(receiver_separator)[1]
       end
 
+      def namespaces method_name
+        parts = class_name(method_name).underscore.split('/')[0..-2] || []
+        "/#{parts.join('/')}" unless parts.empty?
+      end
+
       def class_location method_name
-        "/#{class_name(method_name).underscore}.rb"
+        "#{namespaces(method_name)}/#{filename method_name}"
       end
 
       def namespace method_name
