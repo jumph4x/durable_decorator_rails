@@ -63,7 +63,31 @@ private
 
   def redefinition_body
     "  durably_decorate :#{method_name}, mode: 'strict', sha: '#{existing_sha}' do #{decoration_args}\n" +
+    commented_instructions +
+    indented_method_body +
     "  end"
+  end
+
+  def commented_method_source
+    DurableDecorator::Util.outdented_method_body unbound_method
+  end
+
+  def commented_instructions
+    "    # call the old method with:\n" +
+    "    # _#{existing_sha[0..3]}_#{method_name}\n" +
+    "    \n" +
+    "    # Alternatively, uncomment and override the method body below:\n" +
+    "    \n"
+  end
+
+  def indented_method_body
+    commented_method_source.lines[1..-2].map do |line|
+      "    ##{line}"
+    end.join
+  end
+
+  def unbound_method
+    DurableDecorator::Base.extract_method full_method_name
   end
 
   def existing_sha
