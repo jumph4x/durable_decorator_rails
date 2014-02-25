@@ -6,7 +6,7 @@ This integrates [durable_decorator](https://github.com/jumph4x/durable_decorator
 
 Add this line to your application's Gemfile:
 
-    gem 'durable_decorator_rails'
+    gem 'durable_decorator_rails', github: 'jumph4x/durable_decorator_rails'
 
 And then execute:
 
@@ -35,8 +35,9 @@ Spree::Product.class_eval do
   end  
 
 end
-
 ```
+
+Recent versions also pre-populate that with the previous method body, some hellpful comments and a callable alias to the previous version of the method. 
 
 Otherwise, you may access the SHA of any method in memory with:
 ```shell
